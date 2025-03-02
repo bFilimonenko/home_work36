@@ -22,25 +22,34 @@
  */
 
 enum OrderStatus {
-    Pending = 'Замовлення очікує на обробку',
-    Shipped = 'Замовлення було відправлено',
-    Delivered = 'Замовлення доставлено',
-    Cancelled = 'Замовлення скасовано'
+    Pending,
+    Shipped,
+    Delivered,
+    Cancelled,
 }
 
-function getOrderStatus(status: OrderStatus): string {
-    if (!status) {
-        throw new Error('Невідомий статус замовлення')
+const orderStatusesDescription: Record<OrderStatus, string> = {
+    [OrderStatus.Pending]: 'Замовлення очікує на обробку',
+    [OrderStatus.Shipped]: 'Замовлення було відправлено',
+    [OrderStatus.Delivered]: 'Замовлення доставлено',
+    [OrderStatus.Cancelled]: 'Замовлення скасовано',
+}
+
+function getOrderStatusDescription(status: OrderStatus): string {
+    const description = orderStatusesDescription[status]
+
+    if (!description) {
+        throw Error('Невідомий статус замовлення')
     }
-    return status
+
+    return description
 }
 
 try {
-    console.log(getOrderStatus(OrderStatus.Pending))
-    console.log(getOrderStatus(OrderStatus.Shipped))
-    console.log(getOrderStatus(OrderStatus.Delivered))
-    console.log(getOrderStatus(OrderStatus.Cancelled))
-}
-catch (error) {
+    console.log(getOrderStatusDescription(OrderStatus.Pending))
+    console.log(getOrderStatusDescription(OrderStatus.Shipped))
+    console.log(getOrderStatusDescription(OrderStatus.Delivered))
+    console.log(getOrderStatusDescription(OrderStatus.Cancelled))
+} catch (error) {
     console.log(error)
 }
