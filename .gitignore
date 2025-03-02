@@ -1,0 +1,6 @@
+.idea
+node_modules
+# Project exclude paths
+/src/1.js
+/src/2.js
+/src/3.js
